@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728184513) do
+ActiveRecord::Schema.define(version: 20160728215610) do
 
   create_table "castings", force: :cascade do |t|
     t.integer  "movie_id"
@@ -21,11 +21,38 @@ ActiveRecord::Schema.define(version: 20160728184513) do
     t.index ["person_id"], name: "index_castings_on_person_id"
   end
 
+  create_table "classifyings", force: :cascade do |t|
+    t.integer  "species_id"
+    t.integer  "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_classifyings_on_movie_id"
+    t.index ["species_id"], name: "index_classifyings_on_species_id"
+  end
+
+  create_table "drivings", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_drivings_on_movie_id"
+    t.index ["vehicle_id"], name: "index_drivings_on_vehicle_id"
+  end
+
   create_table "films", force: :cascade do |t|
     t.string   "title"
     t.text     "crawl"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "flyings", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "starship_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["movie_id"], name: "index_flyings_on_movie_id"
+    t.index ["starship_id"], name: "index_flyings_on_starship_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -67,6 +94,30 @@ ActiveRecord::Schema.define(version: 20160728184513) do
     t.datetime "updated_at", null: false
     t.index ["movie_id"], name: "index_settings_on_movie_id"
     t.index ["planet_id"], name: "index_settings_on_planet_id"
+  end
+
+  create_table "species", force: :cascade do |t|
+    t.string   "name"
+    t.string   "classification"
+    t.string   "lifespan"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "starships", force: :cascade do |t|
+    t.string   "name"
+    t.string   "passangers"
+    t.string   "speed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "passengers"
+    t.string   "speed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
