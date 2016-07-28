@@ -11,7 +11,6 @@ class MoviesController < ApplicationController
   end
 
   def create
-    raise
     @movie = Movie.new(movie_params)
     if @movie.save
       flash[:sucess] = "You've added some planets to your movie"
