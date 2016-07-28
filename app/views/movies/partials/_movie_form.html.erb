@@ -1,0 +1,54 @@
+<%= form_for @movie do |f| %>
+  <h3>Who wrote this movie?</h3>
+  <%= f.text_field :writer, class: "form-control" %>
+
+  <div class="form-group">
+    <h3>Choose a Film</h3>
+  <% Film.all.each do |film| %>
+    <%= f.radio_button(:film_ids, film.id) %>
+    <%= f.label(:film_ids, film.title) %>
+  <% end %>
+  </div>
+
+  <div class="form-group">
+    <h3>Choose Planets</h3>
+  <% Planet.all.each do |planet| %>
+    <%= f.check_box(:planet_ids, {:multiple => true}, planet.id, nil ) %>
+    <%= f.label(:planet_ids, planet.name) %>
+  <% end %>
+  </div>
+
+  <div class="form-group">
+    <h3>Choose Characters</h3>
+  <% Person.all.each do |person| %>
+    <%= f.check_box(:person_ids, {:multiple => true}, person.id, nil ) %>
+    <%= f.label(:person_ids, person.name) %>
+  <% end %>
+  </div>
+
+  <div class="form-group">
+    <h3>Choose Starships</h3>
+  <% Starship.all.each do |starship| %>
+    <%= f.check_box(:starship_ids, {:multiple => true}, starship.id, nil ) %>
+    <%= f.label(:starship_ids, starship.name) %>
+  <% end %>
+  </div>
+
+  <div class="form-group">
+    <h3>Choose Vehicles</h3>
+  <% Vehicle.all.each do |vehicle| %>
+    <%= f.check_box(:vehicle_ids, {:multiple => true}, vehicle.id, nil ) %>
+    <%= f.label(:vehicle_ids, vehicle.name) %>
+  <% end %>
+  </div>
+
+  <div class="form-group">
+    <h3>Choose Species</h3>
+  <% Species.all.each do |spec| %>
+    <%= f.check_box(:species_ids, {:multiple => true}, spec.id, nil ) %>
+    <%= f.label(:species_ids, spec.name) %>
+  <% end %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

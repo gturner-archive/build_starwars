@@ -1,18 +1,13 @@
-<%= link_to "Create a Movie", new_movie_path, class: "btn btn-primary btn-lg" %>
-<% @movies.each do |movie| %>
-  <h1>A movie by <%= movie.writer %></h1>
-
-  <% @data_types.each do |type|%>
-    <h2><%= type.upcase %></h2>
-    <% movie.send(type.to_sym).each do |data| %>
-      <p>
-        <% if data["name"] %>
-          <%= data.name %>
-        <% else %>
-          <%= data.title %>
-        <% end %>
-      </p>
-    <% end %>
+<div class="container">
+  <% @movies.each do |movie| %>
+  <div>
+    <h2>
+      A movie by <%= link_to "#{movie.writer}", movie %>
+    </h2>
+    <ul>
+      <li><%= link_to "Edit Movie", edit_movie_path(movie) %></li>
+      <li><%= link_to "Delete Movie", movie, data: {:confirm => 'Are you sure?'}, :method => :delete %></li>
+    </ul>
+  </div>
   <% end %>
-
-<% end %>
+</div>

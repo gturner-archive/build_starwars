@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  validates :writer, presence: true
   has_many :settings
   has_many :planets, through: :settings
   has_many :nameings

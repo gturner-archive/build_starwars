@@ -1,0 +1,24 @@
+<div class="container">
+  <h1><%= @movie.films.first.title %></h1>
+  <h4>A film by <%= @movie.writer %></h4>
+  <p>
+    <%= @movie.films.first.crawl %>
+  </p>
+
+  <% @data_types.each do |type|%>
+    <div class="row">
+    <h2><%= type.upcase %></h2>
+    <% @movie.send(type.to_sym).each do |object| %>
+      <div class="col-md-3">
+        <% object.attributes.each do |key, val| %>
+          <p>
+            <% unless key == "id" || key == "created_at" || key == "updated_at" %>
+              <%= key %>: <strong><%= val %></strong>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  <% end %>
+</div>
