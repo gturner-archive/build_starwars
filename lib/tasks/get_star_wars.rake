@@ -34,7 +34,7 @@ namespace :get_star_wars do
   end
 
   desc "Run all starwars tasks"
-  task :all => [:default_planets, :default_films]
+  task :all => [:default_planets, :default_films, :deafult_persons]
 
   #
   # starships = Tatooine::Starship.list
