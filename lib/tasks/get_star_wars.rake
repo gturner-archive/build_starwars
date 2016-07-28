@@ -5,6 +5,13 @@ namespace :get_star_wars do
     planets.concat next_planets
   end
 
+  films = Tatooine::Film.list
+
+  persons = Tatooine::Person.list
+  while next_persons = Tatooine::Person.next
+    persons.concat next_persons
+  end
+
   desc "Add default planets"
   task :default_planets => :environment do
     planets.each do |planet|
@@ -12,13 +19,23 @@ namespace :get_star_wars do
     end
   end
 
-  desc "Run all starwars tasks"
-  task :all => [:default_planets]
+  desc "Add default films"
+  task :default_films => :environment do
+    films.each do |film|
+      Film.create( :title => film.title, :crawl => film.opening_crawl)
+    end
+  end
 
-  # people = Tatooine::Person.list
-  # while next_people = Tatooine::Person.next
-  #   people.concat next_people
-  # end
+  desc "Add default persons"
+  task :default_persons => :environment do
+    persons.each do |person|
+      Person.create( :name => person.name, :gender => person.gender, :birth => person.birth_year)
+    end
+  end
+
+  desc "Run all starwars tasks"
+  task :all => [:default_planets, :default_films]
+
   #
   # starships = Tatooine::Starship.list
   # while next_starships = Tatooine::Starship.next
@@ -30,10 +47,6 @@ namespace :get_star_wars do
   #   vehicles.concat next_vehicles
   # end
   #
-  # films = Tatooine::Film.list
-  # while next_films = Tatooine::Film.next
-  #   films.concat next_films
-  # end
   #
   # species = Tatooine::Species.list
   # while next_species = Tatooine::Species.next

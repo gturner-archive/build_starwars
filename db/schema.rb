@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728163824) do
+ActiveRecord::Schema.define(version: 20160728184513) do
+
+  create_table "castings", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_castings_on_movie_id"
+    t.index ["person_id"], name: "index_castings_on_person_id"
+  end
+
+  create_table "films", force: :cascade do |t|
+    t.string   "title"
+    t.text     "crawl"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string   "writer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nameings", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "film_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["film_id"], name: "index_nameings_on_film_id"
+    t.index ["movie_id"], name: "index_nameings_on_movie_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string   "name"
+    t.string   "gender"
+    t.string   "birth"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

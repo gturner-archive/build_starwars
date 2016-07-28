@@ -1,1 +1,8 @@
-<h1 class="btn btn-primary">Hello World!</h1>
+<%= link_to "Create a Movie", new_movie_path, class: "btn btn-primary btn-lg" %>
+<% @movies.each do |movie| %>
+  <h1>A movie by <%= movie.writer %></h1>
+  <h2>Planets<h2>
+  <% movie.planets.each do |planet| %>
+    <p><%= planet.name %></p>
+  <% end %>
+<% end %>
