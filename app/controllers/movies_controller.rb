@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   def index
     @movies = Movie.all
+    @data_types = ["planets", "films", "people", "starships", "vehicles", "species"]
   end
 
   def new

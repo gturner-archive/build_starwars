@@ -1,8 +1,18 @@
 <%= link_to "Create a Movie", new_movie_path, class: "btn btn-primary btn-lg" %>
 <% @movies.each do |movie| %>
   <h1>A movie by <%= movie.writer %></h1>
-  <h2>Planets<h2>
-  <% movie.planets.each do |planet| %>
-    <p><%= planet.name %></p>
+
+  <% @data_types.each do |type|%>
+    <h2><%= type.upcase %></h2>
+    <% movie.send(type.to_sym).each do |data| %>
+      <p>
+        <% if data["name"] %>
+          <%= data.name %>
+        <% else %>
+          <%= data.title %>
+        <% end %>
+      </p>
+    <% end %>
   <% end %>
+
 <% end %>
